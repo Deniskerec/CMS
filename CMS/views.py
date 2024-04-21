@@ -1,10 +1,13 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Records
 
 
 def home(request):
+    records = Records.objects.all()
+
     if request.method == 'POST':
         #From the home.html form, we will sign the values to username and to password variable.
         username = request.POST['username']
@@ -19,7 +22,7 @@ def home(request):
             messages.success(request, 'Invalid Credentials')
             return redirect('home')
     else:
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'records': records})
 
 
 def logout_user(request):
