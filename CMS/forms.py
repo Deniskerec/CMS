@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from .models import Records
 
 
 class SignUpForm(UserCreationForm):
@@ -40,3 +41,85 @@ class SignUpForm(UserCreationForm):
         self.fields['password2'].label = ''
         self.fields['password2'].help_text = ('<span class="form-text text-muted"><small>Enter the same password as '
                                               'before, for verification.</small></span>')
+
+
+### Create  Add Record form ( Montlhy) ###
+class AddRecordForm(forms.ModelForm):
+    month = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Month'
+        }),
+        label=""
+    )
+    year = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Year'
+        }),
+        label=""
+    )
+    timestamp = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Timestamp'
+        }),
+        label=""
+    )
+    amount = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Amount'
+        }),
+        label=""
+    )
+    amount_in_cents = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Amount in Cents'
+        }),
+        label=""
+    )
+    net_in_cents = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Net in Cents'
+        }),
+        label=""
+    )
+    km_food_in_cents = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'KM | Food in Cents'
+        }),
+        label=""
+    )
+    ljublana_trips = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ljubljana Trips Count'
+        }),
+        label=""
+    )
+    est_trips = forms.CharField(
+        required=True,
+        widget=forms.widgets.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Estimated Trips Count '
+        }),
+        label=""
+    )
+
+    class Meta:
+        model = Records
+        fields = ['month', 'year', 'timestamp', 'amount', 'amount_in_cents', 'net_in_cents', 'km_food_in_cents',
+                  'ljublana_trips', 'est_trips']
+

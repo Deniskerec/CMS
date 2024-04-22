@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+    <br>
+    <div class="text-center">
+        {% if monthly_record %}
+            <h1>Month : {{ monthly_record.month }}</h1>
+            <br/>
+            <table class="table table-bordered table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <th>ID</th>
+                        <td>{{ monthly_record.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Created At</th>
+                        <td>{{ monthly_record.created_at }}</td>
+                    </tr>
+                    <tr>
+                        <th>Month</th>
+                        <td>{{ monthly_record.month }}</td>
+                    </tr>
+                    <tr>
+                        <th>Year</th>
+                        <td>{{ monthly_record.year }}</td>
+                    </tr>
+                    <tr>
+                        <th>Payment Received</th>
+                        <td>{{ monthly_record.timestamp }}</td>
+                    </tr>
+                    <tr>
+                        <th>Amount</th>
+                        <td>{{ monthly_record.amount }} EUR</td>
+                    </tr>
+                    <tr>
+                        <th>Amount in Cents</th>
+                        <td>{{ monthly_record.amount_in_cents }} Cents</td>
+                    </tr>
+                    <tr>
+                        <th>Net in Cents</th>
+                        <td>{{ monthly_record.net_in_cents }} Cents</td>
+                    </tr>
+
+                    <tr>
+                        <th>KM Food in Cents</th>
+                        <td>{{ monthly_record.km_food_in_cents }} Cents</td>
+                    </tr>
+                    <tr>
+                        <th>Ljublana Trips</th>
+                        <td>{{ monthly_record.ljublana_trips }}</td>
+                    </tr>
+                    <tr>
+                        <th>EST Trips</th>
+                        <td>{{ monthly_record.est_trips }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+                <a href="{% url 'home'%}" class="btn btn-secondary btn-lg">Back</a>
+                <a href="{% url 'delete_monthly_record' monthly_record.id %}" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
+                <a href="{% url 'update_monthly_record' monthly_record.id %}" class="btn btn-secondary btn-lg"> Update </a>
+
+        {% else %}
+            <p>No records found.</p>
+        {% endif %}
+    </div>
+{% endblock %}
